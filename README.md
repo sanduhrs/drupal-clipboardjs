@@ -24,23 +24,29 @@ The Clipboard.js can be added to any text field by visiting the manage display
 page for the entity and and choosing Clipboard.js as the field formatter.
 
 Custom text fields can also use clipboard.js using the form api or in a render
-array. There is a helper function to build the form element, for example:
+array using the theme function to display the element:
 
     function example_form($form, $form_state) {
       $form = array();
     
+      
       // Load clipboard.js library.
       libraries_load('clipboard');
     
-      // Clipboard settings.
-      $text = t('This is the text to be copied...');
-      $alert_style = 'tooltip';
-      $alert_text = 'Copy was successful!';
-      $button_label = 'Click to Copy';
+      
+      // Clipboard settings.      
+      $theme_variables = array(
+        'text' => t('This is the text to be copied...'), 
+        'alert_style' => 'tooltip', 
+        'alert_text' => 'Copy was successful!', 
+        'button_label' => 'Click to Copy',
+      );
+
       
       // Build the form or render element using the helper function:
-      $form = clipboardjs_build_content($text, $alert_style, $alert_text, $button_label);
+      $form['textfield'] = theme('clipboardjs', $theme_variables);
     
+      
       return $form;
     }
 
