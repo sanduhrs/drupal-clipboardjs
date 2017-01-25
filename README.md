@@ -6,16 +6,17 @@ REQUIREMENTS
 ------------
  * Libraries module - https://drupal.org/project/libraries
  * jQuery Update (jQuery >= 1.7) - https://drupal.org/project/jquery_update
+ * clipboard.js library - https://github.com/zenorocha/clipboard.js/archive/master.zip
 
 INSTALLATION
 ------------
-** Use the drush command `drush cbdl` to automatically download the library.
-
 1. Install dependencies and Clipboard.js module as per:
    https://drupal.org/documentation/install/modules-themes/modules-7
 
-2. Visit the media recorder configuration page to set file path,
-   etc, at admin/config/media/mediarecorder.
+2. Download and extract the clipboard.js plugin, rename extracted folder to
+   "clipboard" and copy it into "sites/all/libraries". The plugin should
+   now be located at "sites/all/libraries/clipboard/src/clipboard.js". You can
+   also just use 'drush cbdl' to automatically download the library.
 
 USAGE
 -----
