@@ -35,9 +35,9 @@ class ClipboardJs extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    return array(
+    return [
       // Implement settings form.
-    ) + parent::settingsForm($form, $form_state);
+    ] + parent::settingsForm($form, $form_state);
   }
 
   /**

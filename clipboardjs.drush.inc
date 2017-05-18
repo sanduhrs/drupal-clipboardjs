@@ -9,14 +9,12 @@
  * Implements hook_drush_command().
  */
 function clipboardjs_drush_command() {
-  $items = array();
-
-  $items['clipboard-download-library'] = array(
+  $items = [];
+  $items['clipboard-download-library'] = [
     'description' => dt('Download and install clipboard.js library.'),
-    'aliases' => array('cbdl'),
+    'aliases' => ['cbdl'],
     'callback' => 'drush_clipboardjs_download_libraries',
-  );
-
+  ];
   return $items;
 }
 
@@ -52,7 +50,7 @@ function drush_clipboardjs_download_libraries() {
       drush_delete_dir($library_path, TRUE);
     }
     else {
-      drush_log(dt('Skip installation of @name to @path.', array('@name' => 'clipboard', '@path' => $library_path)), 'warning');
+      drush_log(dt('Skip installation of @name to @path.', ['@name' => 'clipboard', '@path' => $library_path]), 'warning');
       return;
     }
   }
@@ -70,7 +68,7 @@ function drush_clipboardjs_download_libraries() {
 
     // Validate download exists.
     if (!file_exists($filename)) {
-      return drush_set_error(dt('Unable to download @url.', array('@url' => $download_url)));
+      return drush_set_error(dt('Unable to download @url.', ['@url' => $download_url]));
     }
 
     // Decompress the zip archive.
@@ -78,13 +76,13 @@ function drush_clipboardjs_download_libraries() {
 
     // Move directory.
     if (is_dir($extract[0]) && drush_move_dir($extract[0], $library_path)) {
-      drush_log(dt('The @name library has been downloaded to @path.', array('@name' => 'clipboard', '@path' => $library_path)), 'success');
+      drush_log(dt('The @name library has been downloaded to @path.', ['@name' => 'clipboard', '@path' => $library_path]), 'success');
     }
     elseif (is_dir($extract[1]) && drush_move_dir($extract[1], $library_path)) {
-      drush_log(dt('The @name library has been downloaded to @path.', array('@name' => 'clipboard', '@path' => $library_path)), 'success');
+      drush_log(dt('The @name library has been downloaded to @path.', ['@name' => 'clipboard', '@path' => $library_path]), 'success');
     }
     else {
-      drush_set_error(dt('Unable to move @name library to @path.', array('@name' => 'clipboard', '@path' => $library_path)));
+      drush_set_error(dt('Unable to move @name library to @path.', ['@name' => 'clipboard', '@path' => $library_path]));
     }
   }
 
