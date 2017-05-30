@@ -26,4 +26,4 @@ clipboardjs:
     url: https://zenorocha.mit-license.org/
     gpl-compatible: true
   js:
-    /libraries/clipboard/dist/clipboard.min.js: { minified: true }
+    /libraries/clipboard.js/dist/clipboard.min.js: { minified: true }
