@@ -20,7 +20,7 @@ drupal:
 
 clipboardjs:
   remote: https://github.com/zenorocha/clipboard.js/
-  version: "1.6.0"
+  version: "1.7.1"
   license:
     name: MIT
     url: https://zenorocha.mit-license.org/
