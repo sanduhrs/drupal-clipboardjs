@@ -3,6 +3,8 @@
  * Javascript to integrate the clipboard.js library with Drupal.
  */
 
+window.ClipboardJS = window.ClipboardJS || Clipboard;
+
 (function ($) {
   'use strict';
 
@@ -10,7 +12,7 @@
     attach: function (context, settings) {
 
       // Initialize clipboard.js.
-      Drupal.clipboard = new Clipboard('a.clipboardjs-button, input.clipboardjs-button, button.clipboardjs-button');
+      Drupal.clipboard = new ClipboardJS('a.clipboardjs-button, input.clipboardjs-button, button.clipboardjs-button');
 
       // Process successful copy.
       Drupal.clipboard.on('success', function (e) {

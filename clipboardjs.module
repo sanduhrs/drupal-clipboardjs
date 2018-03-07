@@ -33,7 +33,11 @@ function clipboardjs_libraries_info() {
     'path' => 'dist',
     'files' => array(
       'js' => array(
-        'clipboard.min.js',
+        'clipboard.min.js' => array(
+          'scope' => 'header',
+          'group' => JS_LIBRARY,
+          'weight' => -1,
+        )
       ),
     ),
     'integration files' => array(
