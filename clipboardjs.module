@@ -208,6 +208,7 @@ function theme_clipboardjs($variables) {
     '#type' => 'container',
     '#attributes' => array(
       'id' => $uniqid,
+      'class' => 'clipboardjs-text',
     ),
   );
 
