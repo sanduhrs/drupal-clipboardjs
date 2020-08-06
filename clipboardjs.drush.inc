@@ -44,7 +44,7 @@ function drush_clipboardjs_download_libraries() {
   $library_path = $base_path . '/' . $site_path . '/libraries/clipboard';
 
   // Ask to overwrite if library already exists.
-  if (file_prepare_directory($library_path)) {
+  if (\Drupal::service('file_system')->prepareDirectory($library_path)) {
     $confirm = drush_confirm('A version of clipboard.js already exists. Do you want to overwrite it?');
     if ($confirm) {
       drush_delete_dir($library_path, TRUE);
