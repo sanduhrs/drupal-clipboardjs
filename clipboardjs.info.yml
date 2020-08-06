@@ -1,5 +1,5 @@
 name: Clipboard.js
 type: module
-description: Clipboard.js
-core: 8.x
-package: Custom
+description: A modern approach to copy text to clipboard.
+package: Content display
+core_version_requirement: ^8 || ^9
