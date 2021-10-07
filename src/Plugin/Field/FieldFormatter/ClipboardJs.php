@@ -72,6 +72,11 @@ class ClipboardJs extends FormatterBase {
    *   The textual output generated.
    */
   protected function viewValue(FieldItemInterface $item) {
+    // Link field support.
+    if (method_exists($item, 'getUrl')) {
+      return $item->getUrl();
+    }
+
     // The text value has no text format assigned to it, so the user input
     // should equal the output, including newlines.
     return nl2br(Html::escape($item->value));
