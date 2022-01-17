@@ -11,7 +11,7 @@ window.ClipboardJS = window.ClipboardJS || Clipboard;
 
   Drupal.behaviors.clipboardjs = {
     attach: function (context, settings) {
-      let elements = context.querySelectorAll('.clipboardjs-button');
+      let elements = context.querySelectorAll('a.clipboardjs-button, input.clipboardjs-button, button.clipboardjs-button');
       Drupal.clipboard = new ClipboardJS(elements);
 
       const tooltipClass = 'clipboardjs-tooltip';
