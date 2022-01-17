@@ -52,3 +52,15 @@ input.clipboardjs {
   border-bottom-right-radius: 0;
   margin-right: -2px;
 }
+.clipboardjs-tooltip {
+  z-index: 9999;
+  position: absolute;
+  max-width: 300px;
+  padding: 8px;
+  font-size: 1em;
+  color: #333333;
+  background: white;
+  border: 1px solid #c5c5c5;
+  border-radius: 3px;
+  box-shadow: 0 0 5px #666666;
+}

@@ -15,6 +15,7 @@ window.ClipboardJS = window.ClipboardJS || Clipboard;
 
         // Initialize clipboard.js.
         Drupal.clipboard = new ClipboardJS('a.clipboardjs-button, input.clipboardjs-button, button.clipboardjs-button');
+        const tooltipClass = 'clipboardjs-tooltip';
 
         // Process successful copy.
         Drupal.clipboard.on('success', function (e) {
@@ -31,18 +32,12 @@ window.ClipboardJS = window.ClipboardJS || Clipboard;
           else if (alertStyle === 'tooltip') {
             let $target = $(target);
 
-            // Add title to target div.
-            $target.prop('title', alertText);
+            // Show custom tooltip.
+            $target.parent().append(`<div class="${tooltipClass}">${alertText}</div>`);
 
-            // Show tooltip.
-            $target.tooltip({
-              position: { my: "center", at: "center" }
-            }).mouseover();
-
-            // Destroy tooltip after delay.
+            // Remove tooltip after delay.
             setTimeout(function () {
-              $target.tooltip('destroy');
-              $target.prop('title', '');
+              $target.parent().find(`.${tooltipClass}`).remove();
             }, 1500);
           }
         });
@@ -51,35 +46,27 @@ window.ClipboardJS = window.ClipboardJS || Clipboard;
         Drupal.clipboard.on('error', function (e) {
           let target = $(e.trigger).data('clipboardTarget');
           let $target = $(target);
+          let actionMsg = '';
+          let actionKey = (e.action === 'cut' ? 'X' : 'C');
 
-          $target.prop('title', function (action) {
-            let actionMsg = '';
-            let actionKey = (action === 'cut' ? 'X' : 'C');
-
-            if (/iPhone|iPad/i.test(navigator.userAgent)) {
-              actionMsg = 'This device does not support HTML5 Clipboard Copying. Please copy manually.';
+          if (/iPhone|iPad/i.test(navigator.userAgent)) {
+            actionMsg = 'This device does not support HTML5 Clipboard Copying. Please copy manually.';
+          }
+          else {
+            if (/Mac/i.test(navigator.userAgent)) {
+              actionMsg = 'Press ⌘-' + actionKey + ' to ' + e.action;
             }
             else {
-              if (/Mac/i.test(navigator.userAgent)) {
-                actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
-              }
-              else {
-                actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
-              }
+              actionMsg = 'Press Ctrl-' + actionKey + ' to ' + e.action;
             }
+          }
 
-            return actionMsg;
-          }(e.action));
-
-          // Show tooltip.
-          $target.tooltip({
-            position: {my: "center", at: "center"}
-          }).mouseover();
+          // Show custom tooltip.
+          $target.parent().append(`<div class="${tooltipClass}">${actionMsg}</div>`);
 
           // Destroy tooltip after delay.
           setTimeout(function () {
-            $target.tooltip('destroy');
-            $target.prop('title', '');
+            $target.parent().find(`.${tooltipClass}`).remove();
           }, 3000);
         });
 
