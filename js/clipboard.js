@@ -18,9 +18,9 @@ window.ClipboardJS = window.ClipboardJS || Clipboard;
 
       // Process successful copy.
       Drupal.clipboard.on('success', function (e) {
-        let alertStyle = $(e.trigger).data('clipboardAlert');
-        let alertText = $(e.trigger).data('clipboardAlertText');
-        let target = $(e.trigger).data('clipboardTarget');
+        let alertStyle = e.trigger.dataset.clipboardAlert;
+        let alertText = e.trigger.dataset.clipboardAlertText;
+        let target = e.trigger.dataset.clipboardTarget;
 
         // Display as alert.
         if (alertStyle === 'alert') {
