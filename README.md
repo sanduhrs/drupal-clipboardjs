@@ -10,7 +10,7 @@ INSTALLATION
 ------------
 1. Download and extract the clipboard.js plugin, rename extracted folder to
    "clipboard" and copy it into "sites/all/libraries". The plugin should
-   now be located at "sites/all/libraries/clipboard/src/clipboard.js". You can
+   now be located at "sites/all/libraries/clipboard.js/dist/clipboard.js". You can
    also just use 'drush cbdl' to automatically download the library.
 
 USAGE
@@ -23,25 +23,25 @@ array using the theme function to display the element:
 
     function example_form($form, $form_state) {
       $form = array();
-    
-      
+
+
       // Load clipboard.js library.
       libraries_load('clipboard');
-    
-      
-      // Clipboard settings.      
+
+
+      // Clipboard settings.
       $theme_variables = array(
-        'text' => t('This is the text to be copied...'), 
-        'alert_style' => 'tooltip', 
-        'alert_text' => 'Copy was successful!', 
+        'text' => t('This is the text to be copied...'),
+        'alert_style' => 'tooltip',
+        'alert_text' => 'Copy was successful!',
         'button_label' => 'Click to Copy',
       );
 
-      
+
       // Build the form or render element using the helper function:
       $form['textfield'] = theme('clipboardjs', $theme_variables);
-    
-      
+
+
       return $form;
     }
 
