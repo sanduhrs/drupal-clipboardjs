@@ -32,6 +32,7 @@ function clipboardjs_theme($existing, $type, $theme, $path) {
         'text' => NULL,
         'alert_style' => 'tooltip',
         'alert_text' => t('Copy was successful!'),
+        'label' => t('Click to Copy'),
         'height' => 13,
         'width' => 13,
       ],

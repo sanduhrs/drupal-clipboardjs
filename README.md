@@ -21,27 +21,20 @@ page for the entity and and choosing Clipboard.js as the field formatter.
 Custom text fields can also use clipboard.js using the form api or in a render
 array using the theme function to display the element:
 
-    function example_form($form, $form_state) {
-      $form = array();
-
-
-      // Load clipboard.js library.
-      libraries_load('clipboard');
-
-
-      // Clipboard settings.
-      $theme_variables = array(
-        'text' => t('This is the text to be copied...'),
-        'alert_style' => 'tooltip',
-        'alert_text' => 'Copy was successful!',
-        'button_label' => 'Click to Copy',
-      );
-
-
-      // Build the form or render element using the helper function:
-      $form['textfield'] = theme('clipboardjs', $theme_variables);
-
-
+    public function buildForm(array $form, FormStateInterface $form_state) {
+      $form['clipboardjs'] = [
+        '#type' => 'textfield',
+        '#theme' => 'clipboardjs',
+        '#text' => 'The text to copy to clipboard',
+        '#alert_text' => $this->t('Copy was successful!'),
+        '#alert_style' => 'tooltip',
+        '#label' => $this->t('Click to Copy'),
+        '#attached' => [
+          'library' => [
+            'clipboardjs/drupal'
+          ],
+        ]
+      ];
       return $form;
     }
 

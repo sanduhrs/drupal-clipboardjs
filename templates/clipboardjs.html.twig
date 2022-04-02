@@ -1,4 +1,21 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a clipboard.js button.
+ *
+ * Available variables:
+ * - text: The value to copy to the clipboard.
+ * - alert_style: The alert style e.g., tooltip, alert
+ * - alert_text: The alert text.
+ * - height: The button height.
+ * - width: The button width.
+ *
+ * @see clipboardjs_preprocess_clipboardjs()
+ *
+ * @ingroup themeable
+ */
+#}
 {{ attach_library('clipboardjs/drupal') }}
 <input id="{{ id }}" type="text" class="clipboardjs" value="{{ text }}" readonly="readonly" /><a class="clipboardjs-button" data-clipboard-alert="{{ alert_style }}" data-clipboard-alert-text="{{ alert_text }}" data-clipboard-target="#{{ id }}">
-  <img src="{{ module_path }}/images/clippy.svg" alt="{{ label }}" height="{{ height }}" width="{{ width }}" />
+  <img src="{{ module_path }}/images/clippy.svg" alt="{{ label }}" title="{{ label }}" height="{{ height }}" width="{{ width }}" />
 </a>
