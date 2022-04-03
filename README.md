@@ -16,29 +16,37 @@ INSTALLATION
 USAGE
 -----
 The Clipboard.js can be added to any text field by visiting the manage display
-page for the entity and and choosing Clipboard.js as the field formatter.
+page for the entity and choosing Clipboard.js as the field formatter.
 
-Custom text fields can also use clipboard.js using the form api or in a render
+Custom form fields can also use clipboard.js using the form api or in a render
 array using the theme function to display the element:
 
-    public function buildForm(array $form, FormStateInterface $form_state) {
+    ```PHP
       $form['clipboardjs'] = [
-        '#type' => 'textfield',
-        '#theme' => 'clipboardjs',
-        '#text' => 'The text to copy to clipboard',
-        '#alert_text' => $this->t('Copy was successful!'),
-        '#alert_style' => 'tooltip',
-        '#label' => $this->t('Click to Copy'),
-        '#attached' => [
-          'library' => [
-            'clipboardjs/drupal'
-          ],
-        ]
+        '#theme' => 'clipboardjs_button',
+        '#value' => 'Any copyable value.',
       ];
-      return $form;
-    }
+    ```
 
+or a full example of one of the available templates e.g., clipboardjs_button,
+clipboardjs_snippet, clipboardjs_textarea or clipboardjs_textfield:
+
+    ```PHP
+    $form['clipboardjs'] = [
+      '#type' => 'item',
+      '#theme' => 'clipboardjs_textfield',
+      '#title' => $this->t('Clipboard.js Textfield'),
+      '#value' => 'Any copyable value.',
+      '#label' => $this->t('Click to copy'),
+      '#alert_style' => 'tooltip', // e.g., 'tooltip', 'alert' or 'none'
+      '#alert_text' => $this->t('Copied!'),
+    ];
+    ```
 
 CREDITS
 -------
-* Norman Kerr - [kenianbei](https://drupal.org/user/778980)
+Drupal 8/9/10 - Development, Maintenance
+* Stefan Auditor - [sanduhrs](https://www.drupal.org/u/sanduhrs)
+
+Initial Development
+* Norman Kerr - [kenianbei](https://www.drupal.org/u/kenianbei)

@@ -3,12 +3,15 @@
 /**
  * @file
  * Drush integration for the clipboard.js module.
+ *
+ * @deprecated in 2.0.2 and is removed from 2.1.0.
  */
 
 /**
  * Implements hook_drush_command().
  */
 function clipboardjs_drush_command() {
+  @trigger_error('Old style drush commands are deprecated in 2.0.2 and removed from 2.1.0. Instead, use a more modern version of drush..', E_USER_DEPRECATED);
   $items = [];
   $items['clipboard-download-library'] = [
     'description' => dt('Download and install clipboard.js library.'),
@@ -24,6 +27,7 @@ function clipboardjs_drush_command() {
  * @see clipboardjs_drush_command()
  */
 function drush_clipboardjs_download_libraries() {
+  @trigger_error('Old style drush commands are deprecated in 2.0.2 and removed from 2.1.0. Instead, use a more modern version of drush..', E_USER_DEPRECATED);
   if (!module_exists('libraries')) {
     return FALSE;
   }

@@ -1,0 +1,14 @@
+/* Clipboardjs textarea styles */
+.clipboardjs-textarea textarea {
+  font-weight: normal;
+  font-size: medium;
+}
+.clipboardjs-textarea button {
+  display: block;
+  font-weight: normal;
+  font-size: medium;
+}
+.clipboardjs-textarea .tooltip .tooltiptext {
+  bottom: -200%;
+  left: 0;
+}

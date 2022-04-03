@@ -27,14 +27,61 @@ function clipboardjs_help($route_name, RouteMatchInterface $route_match) {
  */
 function clipboardjs_theme($existing, $type, $theme, $path) {
   return [
+    'clipboardjs_button' => [
+      'variables' => [
+        'value' => NULL,
+        'label' => t('Click to copy'),
+        'alert_style' => 'tooltip',
+        'alert_text' => t('Copied!'),
+        'height' => 13,
+        'width' => 13,
+        'attributes' => NULL,
+      ],
+    ],
+    'clipboardjs_snippet' => [
+      'variables' => [
+        'value' => NULL,
+        'label' => t('Click to copy'),
+        'alert_style' => 'tooltip',
+        'alert_text' => t('Copied!'),
+        'height' => 13,
+        'width' => 13,
+        'attributes' => NULL,
+      ],
+    ],
+    'clipboardjs_textarea' => [
+      'variables' => [
+        'value' => NULL,
+        'label' => t('Click to copy'),
+        'alert_style' => 'tooltip',
+        'alert_text' => t('Copied!'),
+        'height' => 13,
+        'width' => 13,
+        'attributes' => NULL,
+      ],
+    ],
+    'clipboardjs_textfield' => [
+      'variables' => [
+        'value' => NULL,
+        'label' => t('Click to copy'),
+        'alert_style' => 'tooltip',
+        'alert_text' => t('Copied!'),
+        'height' => 13,
+        'width' => 13,
+        'attributes' => NULL,
+      ],
+    ],
+    // @todo deprecated in 2.0.2 and is removed from 2.1.0.
     'clipboardjs' => [
       'variables' => [
         'text' => NULL,
+        'value' => NULL,
+        'label' => t('Click to copy'),
         'alert_style' => 'tooltip',
-        'alert_text' => t('Copy was successful!'),
-        'label' => t('Click to Copy'),
+        'alert_text' => t('Copied!'),
         'height' => 13,
         'width' => 13,
+        'attributes' => NULL,
       ],
     ],
   ];
@@ -42,8 +89,46 @@ function clipboardjs_theme($existing, $type, $theme, $path) {
 
 /**
  * Implements hook_preprocess_HOOK().
+ *
+ * @deprecated in 2.0.2 and is removed from 2.1.0.
  */
 function clipboardjs_preprocess_clipboardjs(&$variables) {
+  $variables['attributes']['id'] = uniqid('clipboardjs-');
   $variables['module_path'] = base_path() . \Drupal::service('extension.list.module')->getPath('clipboardjs');
-  $variables['id'] = uniqid('clipboardjs-');
+  if (!empty($variables['text'])
+    && empty($variables['value'])) {
+    $variables['value'] = $variables['text'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function clipboardjs_preprocess_clipboardjs_button(&$variables) {
+  $variables['attributes']['id'] = uniqid('clipboardjs-');
+  $variables['module_path'] = base_path() . \Drupal::service('extension.list.module')->getPath('clipboardjs');
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function clipboardjs_preprocess_clipboardjs_snippet(&$variables) {
+  $variables['attributes']['id'] = uniqid('clipboardjs-');
+  $variables['module_path'] = base_path() . \Drupal::service('extension.list.module')->getPath('clipboardjs');
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function clipboardjs_preprocess_clipboardjs_textarea(&$variables) {
+  $variables['attributes']['id'] = uniqid('clipboardjs-');
+  $variables['module_path'] = base_path() . \Drupal::service('extension.list.module')->getPath('clipboardjs');
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function clipboardjs_preprocess_clipboardjs_textfield(&$variables) {
+  $variables['attributes']['id'] = uniqid('clipboardjs-');
+  $variables['module_path'] = base_path() . \Drupal::service('extension.list.module')->getPath('clipboardjs');
 }

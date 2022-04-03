@@ -11,7 +11,7 @@ use Drush\Exec\ExecTrait;
  */
 class ClipboardJsCommands extends DrushCommands {
 
-  const LIBRARY_VERSION = '2.0.6';
+  const LIBRARY_VERSION = '2.0.10';
 
   const LIBRARY_DOWNLOAD_URL = 'https://github.com/zenorocha/clipboard.js/archive/v' . self::LIBRARY_VERSION . '.zip';
 
@@ -25,7 +25,7 @@ class ClipboardJsCommands extends DrushCommands {
    * @usage clipboardjs-download
    *   Download the library
    *
-     * @command clipboardjs:download
+   * @command clipboardjs:download
    * @aliases cbd
    */
   public function download() {

@@ -20,11 +20,13 @@
 #}
 {{ attach_library('clipboardjs/textfield') }}
 {% spaceless %}
-  <input id="{{ attributes.id }}" type="text" class="clipboardjs" value="{{ value }}" readonly="readonly" />
-  <a class="clipboardjs-button" data-clipboard-alert="{{ alert_style }}" data-clipboard-alert-text="{{ alert_text }}" data-clipboard-target="#{{ attributes.id }}">
-    <div class="tooltip">
-      <img src="{{ module_path }}/images/clippy.svg" alt="{{ label }}" title="{{ label }}" height="{{ height }}" width="{{ width }}" />
-      <span class="tooltiptext"></span>
-    </div>
-  </a>
+  <div class="clipboardjs clipboardjs-textfield">
+    <input id="{{ attributes.id }}"{{ attributes.id }} type="text" class="clipboardjs" value="{{ value }}" readonly="readonly" />
+    <button class="clipboardjs-button" data-clipboard-alert="{{ alert_style }}" data-clipboard-alert-text="{{ alert_text }}" data-clipboard-target="#{{ attributes.id }}">
+      <div class="tooltip">
+        <img class="clippy" src="{{ module_path }}/images/clippy.svg" alt="{{ label }}" height="{{ height }}" width="{{ width }}">
+        <span class="tooltiptext"></span>
+      </div>
+    </button>
+  </div>
 {% endspaceless %}
