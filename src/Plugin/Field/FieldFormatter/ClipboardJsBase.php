@@ -13,20 +13,51 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class ClipboardJsBase extends FormatterBase {
 
+  const TEMPLATE = 'clipboardjs';
+
+  const ALERT_STYLES = ['tooltip', 'alert', 'none'];
+
   /**
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return [] + parent::defaultSettings();
+    return [
+      'label' => 'Click to copy',
+      'alert_style' => 'tooltip',
+      'alert_text' => 'Copied!',
+    ] + parent::defaultSettings();
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    return [
-      // Implement settings form.
-    ] + parent::settingsForm($form, $form_state);
+    $form['label'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Label'),
+      '#description' => $this->t('The label on the button or hovertip.'),
+      '#default_value' => $this->getSetting('label'),
+    ];
+    $form['alert_style'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Alert style'),
+      '#description' => $this->t('The alert style e.g. <em>Tooltip</em>, <em>Alert</em> or <em>None</em>.'),
+      '#default_value' => $this->getSetting('alert_style'),
+      '#options' => array_combine(
+        static::ALERT_STYLES,
+        array_map(
+          'ucfirst',
+          static::ALERT_STYLES
+        )
+      ),
+    ];
+    $form['alert_text'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Alert text'),
+      '#description' => $this->t('The alert text, shown as tooltip or alert.'),
+      '#default_value' => $this->getSetting('alert_text'),
+    ];
+    return $form + parent::settingsForm($form, $form_state);
   }
 
   /**
@@ -34,6 +65,15 @@ class ClipboardJsBase extends FormatterBase {
    */
   public function settingsSummary() {
     $summary = [];
+    $summary[] = $this->t('Label: @label', [
+      '@label' => $this->getSetting('label'),
+    ]);
+    $summary[] = $this->t('Alert style: @alert_style', [
+      '@alert_style' => $this->getSetting('alert_style'),
+    ]);
+    $summary[] = $this->t('Alert text: @alert_text', [
+      '@alert_text' => $this->getSetting('alert_text'),
+    ]);
     return $summary;
   }
 
@@ -44,8 +84,13 @@ class ClipboardJsBase extends FormatterBase {
     $elements = [];
     foreach ($items as $delta => $item) {
       $elements[$delta] = [
-        '#theme' => 'clipboardjs_button',
+        '#theme' => static::TEMPLATE,
+        // @codingStandardsIgnoreStart
+        '#label' => $this->t($this->getSetting('label')),
         '#value' => $this->viewValue($item),
+        '#alert_style' => $this->getSetting('alert_style'),
+        '#alert_text' => $this->t($this->getSetting('alert_text')),
+        // @codingStandardsIgnoreEnd
       ];
     }
     return $elements;

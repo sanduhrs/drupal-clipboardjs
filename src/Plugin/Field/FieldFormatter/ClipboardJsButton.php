@@ -2,8 +2,6 @@
 
 namespace Drupal\clipboardjs\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\FieldItemListInterface;
-
 /**
  * Plugin implementation of the 'clipboard' formatter.
  *
@@ -19,18 +17,6 @@ use Drupal\Core\Field\FieldItemListInterface;
  */
 class ClipboardJsButton extends ClipboardJsBase {
 
-  /**
-   * {@inheritdoc}
-   */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
-    $elements = [];
-    foreach ($items as $delta => $item) {
-      $elements[$delta] = [
-        '#theme' => 'clipboardjs_button',
-        '#value' => $this->viewValue($item),
-      ];
-    }
-    return $elements;
-  }
+  const TEMPLATE = 'clipboardjs_button';
 
 }
