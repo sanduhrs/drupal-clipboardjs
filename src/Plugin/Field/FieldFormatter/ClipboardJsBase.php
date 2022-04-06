@@ -32,13 +32,13 @@ class ClipboardJsBase extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form['label'] = [
+    $elements['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
       '#description' => $this->t('The label on the button or hovertip.'),
       '#default_value' => $this->getSetting('label'),
     ];
-    $form['alert_style'] = [
+    $elements['alert_style'] = [
       '#type' => 'select',
       '#title' => $this->t('Alert style'),
       '#description' => $this->t('The alert style e.g. <em>Tooltip</em>, <em>Alert</em> or <em>None</em>.'),
@@ -51,13 +51,13 @@ class ClipboardJsBase extends FormatterBase {
         )
       ),
     ];
-    $form['alert_text'] = [
+    $elements['alert_text'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Alert text'),
       '#description' => $this->t('The alert text, shown as tooltip or alert.'),
       '#default_value' => $this->getSetting('alert_text'),
     ];
-    return $form + parent::settingsForm($form, $form_state);
+    return $elements;
   }
 
   /**
